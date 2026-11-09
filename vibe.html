@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick Your Study Vibe</title>
+</head>
+<body>
+
+    <h1 id="title"> Pick your study vibe </h1>
+
+    <p id="status">No vibe yet.</p>
+
+    <input type="button"   class="vibe" value="Focus">
+    <input type="button"  class="vibe" value="Chill">
+    <input type="button"class="vibe" value="Night owl">
+
+    <script>
+    let title =document.getElementById("title");
+        let status =document.querySelector("#status");
+    let buttons=document.getElementsByClassName("vibe");
+    for (let i = 0; i < buttons.length; i++) {
+     buttons[i].addEventListener("click",function(){
+        let vibe= this.value;
+    status.textContent="Vibe set: "+vibe;
+         if (vibe =="Focus") {
+        document.body.style.backgroundColor ="#e8f1ff";
+                    document.body.style.color="black";
+    }
+        else if (vibe=="Chill") {
+              document.body.style.backgroundColor="#e9f7ef";
+       document.body.style.color="black";
+              }
+          else if (vibe =="Night owl") {
+          document.body.style.backgroundColor="#2b2d42";
+               document.body.style.color ="white";
+  }
+            });
+  }
+        title.addEventListener("mouseenter",function(){
+    title.textContent= "You've got this!";
+     });
+        title.addEventListener("mouseleave",function(){
+     title.textContent="Pick your study vibe";
+   });
+
+
+
+
+    </script>
+
+</body>
+</html>

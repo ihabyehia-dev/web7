@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Coffee Counter</title>
+</head>
+<body>
+
+    <form id="order">
+     <label>
+    <input type="radio" name="drink"value="espresso">
+    Espresso
+    </label>
+        <br>
+        <label>
+          <input type="radio"name="drink"value="latte">
+         Latte
+        </label>
+        <br>
+ <label>
+         <input type="radio"name="drink"value="mocha">
+          Mocha
+ </label>
+           <br>
+<label>
+     <input type="radio"name="drink"value="tea">
+ Mint tea
+    </label>
+     <br> <br>
+        <input type="text" id="cupName" placeholder="Enter your name">
+        <button type="button"id="orderBtn" value="Place order"> Place order</button>
+    </form>
+    <p id="receipt"></p>
+    <script>
+        let orders=0;
+        function chosenDrink(){
+            for(let i=0; i<order.drink.length;i++){
+        if(order.drink[i].checked) {
+            return order.drink[i].value;
+            }
+          }
+        }
+        function showDrink(){
+            let drink=chosenDrink();
+            let receipt=document.getElementById("receipt");
+            switch(drink) {
+         case"espresso":
+            receipt.textContent="Espresso: small, strong, no nonsense. 2$";
+                 break;
+         case "latte":receipt.textContent ="Latte: smooth and milky. 3.5$";
+             break;
+            case "mocha":  receipt.textContent="Mocha: coffee that thinks it is dessert. 4$";
+                 break;
+        case"tea":receipt.textContent="Mint tea: for when you have had enough coffee. 1.5$";
+         break;
+            }
+        }
+        for(let i=0;i<order.drink.length;i++){
+            order.drink[i].onclick=showDrink;
+        }
+function price(drink){
+     switch(drink) {
+      case "espresso":
+                return "2";
+       case "latte":
+               return "3.5";
+          case "mocha":
+            return "4";
+             case "tea":
+             return "1.5";
+     }
+        }
+        document.getElementById("orderBtn").addEventListener("click", function () {
+                let drink =chosenDrink();
+                let cupName=document.getElementById("cupName");
+                let name= cupName.value.trim();
+                if(drink=="") {
+                 alert("Pick a drink first!");
+                return;
+                }
+                if(name=="") {
+                alert("Who is this cup for?");
+                    cupName.focus();
+                    return;
+                }
+                orders++;
+                document.getElementById("receipt").textContent="Order #" + orders + ": one " + drink +" for " + name + ". That's " + price(drink) + "$.";
+            });
+    </script>
+
+</body>
+</html>
